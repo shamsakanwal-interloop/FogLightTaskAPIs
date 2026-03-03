@@ -82,26 +82,10 @@ public class FogLightTaskDbContext :
         builder.ConfigureTenantManagement();
         builder.ConfigureBlobStoring();
 
-        //builder.Entity<ProductionReportView>(b =>
-        //{
-        //    b.HasNoKey();
-        //    b.ToView("vw_ProductionReport");
-        //});
-
         builder.Entity<ProductionReportView>(b =>
         {
             b.HasNoKey();
             b.ToView(null); 
         });
-
-
-        /* Configure your own tables/entities inside here */
-
-        //builder.Entity<YourEntity>(b =>
-        //{
-        //    b.ToTable(FogLightTaskConsts.DbTablePrefix + "YourEntities", FogLightTaskConsts.DbSchema);
-        //    b.ConfigureByConvention(); //auto configure for the base class props
-        //    //...
-        //});
     }
 }

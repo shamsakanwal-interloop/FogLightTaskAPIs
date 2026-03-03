@@ -7,10 +7,10 @@ public class ToeClosingHourlyDto
     public DateTime StitchDate { get; set; }
     public int TcCostCenter { get; set; }
     public int MachineId { get; set; }
-    public string BatchNo { get; set; }
+    public string? BatchNo { get; set; }
     public int YearCode { get; set; }
-    public string EmpCode { get; set; }
-    public string EmpName { get; set; }
+    public string? EmpCode { get; set; }
+    public string? EmpName { get; set; }
     public int BatchId { get; set; }
     public decimal ShiftProd { get; set; }
     public decimal H1 { get; set; }

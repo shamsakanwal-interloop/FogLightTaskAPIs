@@ -20,7 +20,7 @@ public class ReportingAppService : ApplicationService
         _dbContextProvider = dbContextProvider;
     }
 
-    //Latest Machine Orders
+    //Latest Machine Orders API
     public async Task<List<LatestMachineOrderDto>> GetLatestMachineOrdersAsync(int costCode)
     {
         var dbContext = await _dbContextProvider.GetDbContextAsync();
@@ -69,7 +69,7 @@ ORDER BY Machine;";
     }
 
 
-    // Production report between date and costCode
+    // Production Summary between date and CostCode 
     public async Task<List<ProductionDashboardDto>> GetProductionDashboardAsync(
     DateTime startDate,
     DateTime endDate,

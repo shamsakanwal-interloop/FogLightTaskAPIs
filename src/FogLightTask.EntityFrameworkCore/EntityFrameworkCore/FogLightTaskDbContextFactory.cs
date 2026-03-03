@@ -6,8 +6,6 @@ using Microsoft.Extensions.Configuration;
 
 namespace FogLightTask.EntityFrameworkCore;
 
-/* This class is needed for EF Core console commands
- * (like Add-Migration and Update-Database commands) */
 public class FogLightTaskDbContextFactory : IDesignTimeDbContextFactory<FogLightTaskDbContext>
 {
     public FogLightTaskDbContext CreateDbContext(string[] args)
