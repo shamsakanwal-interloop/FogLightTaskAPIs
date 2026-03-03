@@ -1,0 +1,117 @@
+{
+  "template": "app",
+  "imports": {
+    "Volo.Abp.BasicTheme": {
+      "version": "10.0.0",
+      "isInstalled": true,
+      "creationTime": "02/23/2026 08:32:24 +00:00"
+    },
+    "Volo.Abp.Account": {
+      "version": "10.0.0",
+      "isInstalled": true,
+      "creationTime": "02/23/2026 08:32:24 +00:00"
+    },
+    "Volo.Abp.OpenIddict": {
+      "version": "10.0.0",
+      "isInstalled": true,
+      "creationTime": "02/23/2026 08:32:24 +00:00"
+    },
+    "Volo.Abp.Identity": {
+      "version": "10.0.0",
+      "isInstalled": true,
+      "creationTime": "02/23/2026 08:32:24 +00:00"
+    },
+    "Volo.Abp.TenantManagement": {
+      "version": "10.0.0",
+      "isInstalled": true,
+      "creationTime": "02/23/2026 08:32:24 +00:00"
+    },
+    "Volo.Abp.SettingManagement": {
+      "version": "10.0.0",
+      "isInstalled": true,
+      "creationTime": "02/23/2026 08:32:24 +00:00"
+    },
+    "Volo.Abp.PermissionManagement": {
+      "version": "10.0.0",
+      "isInstalled": true,
+      "creationTime": "02/23/2026 08:32:24 +00:00"
+    },
+    "Volo.Abp.FeatureManagement": {
+      "version": "10.0.0",
+      "isInstalled": true,
+      "creationTime": "02/23/2026 08:32:24 +00:00"
+    },
+    "FoglightAPI": {
+      "path": "modules/foglightapi/FoglightAPI.abpmdl",
+      "isInstalled": true
+    }
+  },
+  "folders": {
+    "items": {
+      "src": {},
+      "test": {}
+    }
+  },
+  "packages": {
+    "FogLightTask.Application": {
+      "path": "src/FogLightTask.Application/FogLightTask.Application.abppkg",
+      "folder": "src"
+    },
+    "FogLightTask.Application.Tests": {
+      "path": "test/FogLightTask.Application.Tests/FogLightTask.Application.Tests.abppkg",
+      "folder": "test"
+    },
+    "FogLightTask.Domain.Shared": {
+      "path": "src/FogLightTask.Domain.Shared/FogLightTask.Domain.Shared.abppkg",
+      "folder": "src"
+    },
+    "FogLightTask.Application.Contracts": {
+      "path": "src/FogLightTask.Application.Contracts/FogLightTask.Application.Contracts.abppkg",
+      "folder": "src"
+    },
+    "FogLightTask.HttpApi": {
+      "path": "src/FogLightTask.HttpApi/FogLightTask.HttpApi.abppkg",
+      "folder": "src"
+    },
+    "FogLightTask.HttpApi.Client": {
+      "path": "src/FogLightTask.HttpApi.Client/FogLightTask.HttpApi.Client.abppkg",
+      "folder": "src"
+    },
+    "FogLightTask.Web": {
+      "path": "src/FogLightTask.Web/FogLightTask.Web.abppkg",
+      "folder": "src"
+    },
+    "FogLightTask.Web.Tests": {
+      "path": "test/FogLightTask.Web.Tests/FogLightTask.Web.Tests.abppkg",
+      "folder": "test"
+    },
+    "FogLightTask.EntityFrameworkCore.Tests": {
+      "path": "test/FogLightTask.EntityFrameworkCore.Tests/FogLightTask.EntityFrameworkCore.Tests.abppkg",
+      "folder": "test"
+    },
+    "FogLightTask.EntityFrameworkCore": {
+      "path": "src/FogLightTask.EntityFrameworkCore/FogLightTask.EntityFrameworkCore.abppkg",
+      "folder": "src"
+    },
+    "FogLightTask.TestBase": {
+      "path": "test/FogLightTask.TestBase/FogLightTask.TestBase.abppkg",
+      "folder": "test"
+    },
+    "FogLightTask.Domain.Tests": {
+      "path": "test/FogLightTask.Domain.Tests/FogLightTask.Domain.Tests.abppkg",
+      "folder": "test"
+    },
+    "FogLightTask.HttpApi.Client.ConsoleTestApp": {
+      "path": "test/FogLightTask.HttpApi.Client.ConsoleTestApp/FogLightTask.HttpApi.Client.ConsoleTestApp.abppkg",
+      "folder": "test"
+    },
+    "FogLightTask.DbMigrator": {
+      "path": "src/FogLightTask.DbMigrator/FogLightTask.DbMigrator.abppkg",
+      "folder": "src"
+    },
+    "FogLightTask.Domain": {
+      "path": "src/FogLightTask.Domain/FogLightTask.Domain.abppkg",
+      "folder": "src"
+    }
+  }
+}

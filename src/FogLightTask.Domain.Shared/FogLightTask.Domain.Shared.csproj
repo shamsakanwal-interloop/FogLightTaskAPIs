@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\common.props" />
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <RootNamespace>FogLightTask</RootNamespace>
+    <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.66" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.4" />
+    <PackageReference Include="Volo.Abp.BackgroundJobs.Domain.Shared" Version="10.0.0" />
+    <PackageReference Include="Volo.Abp.AuditLogging.Domain.Shared" Version="10.0.0" />
+    <PackageReference Include="Volo.Abp.FeatureManagement.Domain.Shared" Version="10.0.0" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.Domain.Shared" Version="10.0.0" />
+    <PackageReference Include="Volo.Abp.SettingManagement.Domain.Shared" Version="10.0.0" />
+    <PackageReference Include="Volo.Abp.BlobStoring.Database.Domain.Shared" Version="10.0.0" />
+    <PackageReference Include="Volo.Abp.GlobalFeatures" Version="10.0.0" />
+    <ProjectReference Include="../../modules/foglightapi/src/FoglightAPI.Domain.Shared/FoglightAPI.Domain.Shared.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.OpenIddict.Domain.Shared" Version="10.0.0" />
+    <PackageReference Include="Volo.Abp.Identity.Domain.Shared" Version="10.0.0" />
+    <PackageReference Include="Volo.Abp.TenantManagement.Domain.Shared" Version="10.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="10.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Localization\FogLightTask\*.json" />
+    <Content Remove="Localization\FogLightTask\*.json" />
+  </ItemGroup>
+</Project>

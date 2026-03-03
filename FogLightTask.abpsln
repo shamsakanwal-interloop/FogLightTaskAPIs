@@ -1,0 +1,85 @@
+{
+  "id": "ebe6de32-b8fd-4699-a6e2-7b29ad1ce5e4",
+  "creationTime": "02/23/2026 08:32:24 +00:00",
+  "template": "app",
+  "versions": {
+    "AbpFramework": "10.0.0",
+    "AbpStudio": "2.0.2",
+    "TargetDotnetFramework": "net10.0"
+  },
+  "modules": {
+    "FogLightTask": {
+      "path": "FogLightTask.abpmdl",
+      "folder": "main"
+    },
+    "FoglightAPI": {
+      "path": "modules/foglightapi/FoglightAPI.abpmdl",
+      "folder": "modules"
+    }
+  },
+  "runProfiles": {
+    "Default": {
+      "path": "etc/abp-studio/run-profiles/Default.abprun.json"
+    }
+  },
+  "options": {
+    "httpRequests": {
+      "ignoredUrls": []
+    }
+  },
+  "creatingStudioConfiguration": {
+    "template": "app",
+    "createdAbpStudioVersion": "2.0.2",
+    "creationTool": "ABP Studio UI",
+    "tiered": "false",
+    "runInstallLibs": "true",
+    "useLocalReferences": "false",
+    "multiTenancy": "true",
+    "includeTests": "true",
+    "kubernetesConfiguration": "false",
+    "uiFramework": "mvc",
+    "mobileFramework": "none",
+    "distributedEventBus": "none",
+    "databaseProvider": "ef",
+    "runDbMigrator": "true",
+    "databaseManagementSystem": "sqlserver",
+    "separateTenantSchema": "false",
+    "createInitialMigration": "true",
+    "theme": "basic",
+    "themeStyle": "",
+    "themeMenuPlacement": "",
+    "publicWebsite": "false",
+    "socialLogin": "false",
+    "sampleCrudPage": "false",
+    "selectedLanguages": [
+      "English",
+      "Arabic",
+      "Chinese (Simplified)",
+      "Chinese (Traditional)",
+      "Czech",
+      "English (United Kingdom)",
+      "Finnish",
+      "French",
+      "German (Germany)",
+      "Hindi ",
+      "Hungarian",
+      "Icelandic",
+      "Italian",
+      "Portuguese (Brazil)",
+      "Romanian (Romania)",
+      "Russian",
+      "Slovak",
+      "Spanish",
+      "Swedish",
+      "Turkish"
+    ],
+    "defaultLanguage": "English",
+    "createCommand": "abp new FogLightTask -t app --ui-framework mvc --database-provider ef --database-management-system sqlserver --theme basic --without-cms-kit --dont-run-bundling --no-social-logins -no-gdpr -no-openiddict-admin-ui -no-audit-logging -no-file-management -no-language-management -no-text-template-management"
+  },
+  "folders": {
+    "items": {
+      "main": {},
+      "modules": {}
+    }
+  }
+}
