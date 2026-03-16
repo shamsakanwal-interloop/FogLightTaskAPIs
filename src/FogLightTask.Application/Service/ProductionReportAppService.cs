@@ -8,7 +8,7 @@ using Volo.Abp.Application.Services;
 
 namespace FogLightTask.Service;
 
-public class ProductionReportAppService : ApplicationService, IProductionReportAppService
+public class ProductionReportAppService : ApplicationService
 {
     private readonly IProductionReportRepository _repository;
 
