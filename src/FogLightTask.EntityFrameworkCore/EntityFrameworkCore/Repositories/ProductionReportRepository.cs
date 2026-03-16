@@ -1,4 +1,5 @@
 ﻿using FogLightTask.Entity;
+using FogLightTask.EntityFrameworkCore.DataBase;
 using FogLightTask.Repositories;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -10,9 +11,9 @@ using Volo.Abp.EntityFrameworkCore;
 
 namespace FogLightTask.EntityFrameworkCore.Repositories;
 
-public class ProductionReportRepository: EfCoreRepository<FogLightTaskDbContext, ProductionReportView>, IProductionReportRepository
+public class ProductionReportRepository: EfCoreRepository<ProductionDbContext, ProductionReportView>, IProductionReportRepository
 {
-    public ProductionReportRepository(IDbContextProvider<FogLightTaskDbContext> dbContextProvider): base(dbContextProvider)
+    public ProductionReportRepository(IDbContextProvider<ProductionDbContext> dbContextProvider): base(dbContextProvider)
     {
     }
 

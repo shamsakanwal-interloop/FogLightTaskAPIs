@@ -5,6 +5,7 @@ using Volo.Abp.Uow;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
+using Volo.Abp.EntityFrameworkCore.Oracle;
 using Volo.Abp.EntityFrameworkCore.SqlServer;
 using Volo.Abp.FeatureManagement.EntityFrameworkCore;
 using Volo.Abp.Identity.EntityFrameworkCore;
@@ -15,6 +16,9 @@ using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.BlobStoring.Database.EntityFrameworkCore;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
 using Volo.Abp.Studio;
+using FogLightTask.EntityFrameworkCore.DataBase;
+using FogLightTask.EntityFrameworkCore.Repositories;
+using FogLightTask.Repositories;
 
 namespace FogLightTask.EntityFrameworkCore;
 
@@ -23,6 +27,7 @@ namespace FogLightTask.EntityFrameworkCore;
     typeof(FogLightTaskDomainModule),
     typeof(AbpPermissionManagementEntityFrameworkCoreModule),
     typeof(AbpSettingManagementEntityFrameworkCoreModule),
+    typeof(AbpEntityFrameworkCoreOracleModule),
     typeof(AbpEntityFrameworkCoreSqlServerModule),
     typeof(AbpBackgroundJobsEntityFrameworkCoreModule),
     typeof(AbpAuditLoggingEntityFrameworkCoreModule),
@@ -42,10 +47,21 @@ public class FogLightTaskEntityFrameworkCoreModule : AbpModule
 
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
+
         context.Services.AddAbpDbContext<FogLightTaskDbContext>(options =>
         {
                 /* Remove "includeAllEntities: true" to create
                  * default repositories only for aggregate roots */
+            options.AddDefaultRepositories(includeAllEntities: true);
+        });
+
+        context.Services.AddAbpDbContext<ProductionDbContext>(options =>
+        {
+            options.AddDefaultRepositories(includeAllEntities: true);
+        });
+
+        context.Services.AddAbpDbContext<OracleDbContext>(options =>
+        {
             options.AddDefaultRepositories(includeAllEntities: true);
         });
 
@@ -59,8 +75,13 @@ public class FogLightTaskEntityFrameworkCoreModule : AbpModule
             /* The main point to change your DBMS.
              * See also FogLightTaskDbContextFactory for EF Core tooling. */
 
+            // Default for all module DbContexts (SettingManagement, Identity, etc.)
             options.UseSqlServer();
 
+            // Explicit configuration for your own DbContexts
+            options.Configure<FogLightTaskDbContext>(c => c.UseSqlServer());
+            options.Configure<ProductionDbContext>(c => c.UseSqlServer());
+            options.Configure<OracleDbContext>(c => c.UseOracle());
         });
         
     }

@@ -20,7 +20,7 @@ namespace FogLightTask.EntityFrameworkCore;
 
 [ReplaceDbContext(typeof(IIdentityDbContext))]
 [ReplaceDbContext(typeof(ITenantManagementDbContext))]
-[ConnectionStringName("ProductionDb")]
+[ConnectionStringName("Default")]
 public class FogLightTaskDbContext :
     AbpDbContext<FogLightTaskDbContext>,
     ITenantManagementDbContext,
@@ -51,7 +51,7 @@ public class FogLightTaskDbContext :
     public DbSet<IdentityLinkUser> LinkUsers { get; set; }
     public DbSet<IdentityUserDelegation> UserDelegations { get; set; }
     public DbSet<IdentitySession> Sessions { get; set; }
-    public DbSet<ProductionReportView> ProductionReport{ get; set; }
+
 
     // Tenant Management
     public DbSet<Tenant> Tenants { get; set; }
@@ -82,10 +82,20 @@ public class FogLightTaskDbContext :
         builder.ConfigureTenantManagement();
         builder.ConfigureBlobStoring();
 
-        builder.Entity<ProductionReportView>(b =>
-        {
-            b.HasNoKey();
-            b.ToView(null); 
-        });
+        //builder.Entity<ProductionReportView>(b =>
+        //{
+        //    b.HasNoKey();
+        //    b.ToView(null); 
+        //});
+        //builder.Entity<MachinePlains>(b =>
+        //{
+        //    b.HasNoKey();
+        //    b.ToView(null);
+        //});
+        //builder.Entity<RunningOrderView>(b =>
+        //{
+        //    b.HasNoKey();
+        //    b.ToView(null);
+        //});
     }
 }

@@ -13,16 +13,12 @@ public class ToeClosingAppService : ApplicationService
 {
     private readonly IDbContextProvider<FogLightTaskDbContext> _dbContextProvider;
 
-    public ToeClosingAppService(
-        IDbContextProvider<FogLightTaskDbContext> dbContextProvider)
+    public ToeClosingAppService(IDbContextProvider<FogLightTaskDbContext> dbContextProvider)
     {
         _dbContextProvider = dbContextProvider;
     }
 
-    public async Task<List<ToeClosingHourlyDto>> GetHourlySummaryAsync(
-        DateTime knitDate,
-        string shift,
-        int tcCostCode)
+    public async Task<List<ToeClosingHourlyDto>> GetHourlySummaryAsync(DateTime knitDate,string shift,int tcCostCode)
     {
         var dbContext = await _dbContextProvider.GetDbContextAsync();
 
