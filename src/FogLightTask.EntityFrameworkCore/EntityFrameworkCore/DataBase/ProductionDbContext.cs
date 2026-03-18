@@ -24,5 +24,7 @@ public class ProductionDbContext : AbpDbContext<ProductionDbContext>
         });
 
         builder.Entity<SqlKnittingView>(b => { b.HasNoKey(); b.ToView(null); });
+        builder.Entity<SqlKnittingStatusView>(b => { b.HasNoKey(); b.ToView(null); });
     }
+
 }
