@@ -16,5 +16,5 @@ public class SqlKnittingView
     public string? BsCode { get; set; }
     public DateTime? LD { get; set; }
     public long? KnitQty { get; set; }
-    public decimal? Balance { get; set; }
+    public Decimal? Balance { get; set; }
 }

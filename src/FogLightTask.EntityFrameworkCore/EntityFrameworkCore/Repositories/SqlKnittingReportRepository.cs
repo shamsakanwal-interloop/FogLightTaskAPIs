@@ -24,51 +24,58 @@ public class SqlKnittingReportRepository :  IKnittingReportRepository, ITransien
         var dbContext = await _dbContextProvider.GetDbContextAsync();
 
         var sql = @"
-WITH OrderTransaction AS
-(
-    SELECT DISTINCT
-        OrderHash,
-        CostCode AS CC,
-        PsCode
-    FROM [fl-prod-orders-transactions]
-    WHERE CostCode = @costCode
-),
-BatchData AS
-(
-    SELECT
-        B.OrderHash,
-        MAX(B.LoadDate) AS LD,
-        SUM(CAST(B.KnittedQty AS BIGINT) - CAST(B.KnitDefects AS BIGINT)) AS KnitQty,
-        MAX(B.TotalReqQty) AS TotalReqQty
-    FROM [fl-prod-interloop-orders-batches] B
-    WHERE EXISTS
-    (
-        SELECT 1
-        FROM OrderTransaction A
-        WHERE A.OrderHash = B.OrderHash
-    )
-    GROUP BY B.OrderHash
-)
-SELECT
-    A.OrderHash,
-    A.CC AS CostCode,
-    A.PsCode,
-    O.OrdNo,
-    O.PairCode,
-    O.Pattern AS Design,
-    O.DelNo,
-    O.McSize,
-    O.BaseColor,
-    O.BsCode,
-    B.LD,
-    B.KnitQty,
-    (B.TotalReqQty - B.KnitQty) / 24.0 AS Balance
-FROM OrderTransaction A
-INNER JOIN [fl-prod-orders] O
-    ON O.OrderHash = A.OrderHash
-LEFT JOIN BatchData B
-    ON B.OrderHash = A.OrderHash
-ORDER BY O.OrdNo
+        WITH ActiveOrders AS
+        (
+            SELECT Distinct
+                T.OrderHash,
+                T.CostCode,
+                T.PsCode
+            FROM [fl-prod-orders-transactions] T
+            JOIN
+            (
+                SELECT
+                    SNo,
+                    MAX(DateCreated) AS MaxDate
+                FROM [fl-prod-orders-transactions]
+                GROUP BY SNo
+            ) M
+            ON T.SNo = M.SNo
+            AND T.DateCreated = M.MaxDate
+            WHERE T.CostCode = @costCode
+        ),
+        BatchData AS
+        (
+            SELECT
+                B.OrderHash,
+                MAX(B.LoadDate) AS LD,
+                SUM(CAST(B.KnittedQty AS BIGINT) - CAST(B.KnitDefects AS BIGINT)) AS KnitQty,
+                MAX(CAST(B.TotalReqQty AS BIGINT)) AS TotalReqQty
+            FROM [fl-prod-interloop-orders-batches] B
+            INNER JOIN ActiveOrders A
+                ON A.OrderHash = B.OrderHash
+            GROUP BY B.OrderHash
+        )
+        SELECT
+            A.OrderHash,
+            A.CostCode,
+            A.PsCode,
+            O.OrdNo,
+            O.PairCode,
+            O.Pattern AS Design,
+            O.DelNo,
+            O.McSize,
+            O.BaseColor,
+            O.BsCode,
+            B.LD,
+            B.KnitQty,
+            B.TotalReqQty,
+            CAST(B.TotalReqQty - B.KnitQty AS DECIMAL(18,2)) AS Balance
+        FROM ActiveOrders A
+        INNER JOIN [fl-prod-orders] O
+            ON O.OrderHash = A.OrderHash
+        LEFT JOIN BatchData B
+            ON B.OrderHash = A.OrderHash
+        ORDER BY O.OrdNo;
 ";
 
         var result = await dbContext.Database
